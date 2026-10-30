@@ -119,7 +119,7 @@ export const logout = asyncHandler(async (req, res) => {
   res.clearCookie("socialShoppingRefreshToken", {
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: env.NODE_ENV === "production" ? "none" : "lax",
     path: "/v1/auth",
   });
 
