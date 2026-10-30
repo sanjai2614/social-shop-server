@@ -21,7 +21,7 @@ export const setRefreshTokenCookie = (res, token) => {
   res.cookie("socialShoppingRefreshToken", token, {
     httpOnly: true,
     secure: env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
     path: "/v1/auth",
   });
